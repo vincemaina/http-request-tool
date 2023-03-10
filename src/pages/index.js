@@ -68,17 +68,8 @@ export default function Home() {
 
                             <hr className="border border border-1 opacity-100 mb-4" />
 
+                            {/* Method radio buttons */}
                             <div className={"text-start mb-4"}>
-                                {/*<div className="btn-group" role="group" aria-label="Basic radio toggle button group">*/}
-                                {/*    <input type="radio" className="btn-check" name="input-method" id="btnradio1"*/}
-                                {/*           autoComplete="off" value={"GET"} checked/>*/}
-                                {/*    <label className="btn btn-outline-primary" htmlFor="btnradio1">GET</label>*/}
-
-                                {/*    <input type="radio" className="btn-check" name="input-method" id="btnradio2"*/}
-                                {/*           autoComplete="off" value={"POST"}/>*/}
-                                {/*    <label className="btn btn-outline-warning" htmlFor="btnradio2">POST</label>*/}
-                                {/*</div>*/}
-
                                 <div className="form-check text-primary">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault"
                                            id="flexRadioDefault1" value={"GET"} onClick={changeMethod} checked/>
@@ -91,12 +82,14 @@ export default function Home() {
                                 </div>
                             </div>
 
+                            {/* Endpoint input */}
                             <div className={"text-start mb-3"}>
                                 <label htmlFor={"input-endpoint"}>Endpoint</label>
                                 <input type={"url"} id={"input-endpoint"} className={"form-control"}
-                                       placeholder={"e.g. https://api.host.com/path"} required/>
+                                       placeholder={"e.g. https://api.host.com/path"} value={"https://httpbin.org/ip"} required/>
                             </div>
 
+                            {/* Message input */}
                             <div className={"text-start mb-4"} hidden>
                                 <label htmlFor={"input-message"}>Message</label>
                                 <input type={"text"} id={"input-message"} className={"form-control"}
