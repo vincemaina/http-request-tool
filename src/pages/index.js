@@ -86,7 +86,7 @@ export default function Home() {
                             <div className={"text-start mb-3"}>
                                 <label htmlFor={"input-endpoint"}>Endpoint</label>
                                 <input type={"url"} id={"input-endpoint"} className={"form-control"}
-                                       placeholder={"e.g. https://api.host.com/path"} value={"https://httpbin.org/ip"} required/>
+                                       placeholder={"e.g.https://httpbin.org/ip"} required/>
                             </div>
 
                             {/* Message input */}
