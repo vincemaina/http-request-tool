@@ -1,4 +1,16 @@
 import Head from 'next/head'
+import { Roboto_Mono, Roboto } from 'next/font/google'
+
+const robotoMono = Roboto_Mono ({
+    weight: '400',
+    subsets: ['latin'],
+})
+
+const roboto = Roboto({
+    weight: ['400', '700'],
+    style: ['normal', 'italic'],
+    subsets: ['latin'],
+})
 
 let method = "GET"
 
@@ -80,13 +92,13 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <main className={"text-white"} style={{background: "midnightblue"}}>
+            <main className={"text-white"} style={{background: "linear-gradient(130deg, midnightblue, violet)"}}>
                 <div className="text-center">
                     <div className="row vh-100 align-items-start">
 
                         {/* Inputs */}
-                        <div className="col-lg-5 text-start p-5">
-                            <h1 className={"fw-bold"}>HTTP Tool</h1>
+                        <div className={"col-lg-5 text-start p-5 " + roboto.className}>
+                            <h1 className={"fw-bold"} style={{color: "pink"}}>HTTP Tool</h1>
                             <p className={"fw-light fs-3 mb-3"}>Testing tool for sending HTTP requests from a Next.js server.</p>
 
                             <hr className="border border border-1 opacity-100 mb-4" />
@@ -121,13 +133,21 @@ export default function Home() {
 
                             {/* Submit button */}
                             <div className={"text-start mt-4"}>
-                                <button type={"button"} className={"btn btn-lg btn-success"} onClick={sendRequest}>Send</button>
+                                <button type={"button"} className={"btn btn-lg btn-warning"} onClick={sendRequest}>Send</button>
+                            </div>
+
+                            <div className={"fixed-bottom"}>
+                                <span className={"p-2 m-3 bg-light text-black rounded d-inline-block"}>
+                                    <i className="icon bi bi-github me-1"></i>
+                                    Built by Vince Maina
+                                </span>
                             </div>
                         </div>
 
                         {/* Response */}
-                        <div className="col-lg h-100 w-100">
-                            <div className={"h-100 w-100 p-5 text-start text-white"} style={{backgroundColor: "black", overflowY: "scroll"}}>
+                        <div className={"col-lg h-100 w-100 fs-6 " + robotoMono.className}>
+                            <div className={"h-100 w-100 p-5 text-start text-white"} style={{backgroundColor: "#0f0f0f",
+                                overflowY: "scroll", boxShadow: "inset black 0px 0px 30px"}}>
                                 <div id={"response-outcome"}><span style={{color: "grey"}}>Use the left panel to send a HTTP request to the example API, or enter your own API endpoint!</span></div>
                                 <br/>
                                 <div id={"response-display"}></div>
