@@ -2,9 +2,19 @@ import Head from 'next/head'
 
 let method = "GET"
 
+function randomAPIPicker() {
+    let APIs = [
+        "https://official-joke-api.appspot.com/random_joke",
+        "https://www.boredapi.com/api/activity",
+        "https://api.publicapis.org/entries"
+    ]
+
+    return APIs[Math.floor(Math.random() * APIs.length)]
+}
+
 function changeMethod(elem) {
     if (elem.target.checked === true) {
-        document.getElementById("input-message").parentElement.hidden = elem.target.value === "GET"
+        document.getElementById("input-body").parentElement.hidden = elem.target.value === "GET"
         method = elem.target.value === "GET" ? "GET" : "POST"
     }
 }
@@ -21,16 +31,29 @@ function sendRequest() {
         return
     }
 
-    responseOutcome.innerHTML = "<span style='color: orange'>Waiting for response...</span>"
-    responseDisplay.innerText = ""
-
     let data = {
         method: method
     }
 
-    if (method === "POST") {
-        data["body"] = {"message": document.getElementById("input-message").value}
+    let rawPayload = document.getElementById("input-body").value.trim()
+    if (method === "POST" && rawPayload) {
+
+        let payload = {}
+
+        let keyValPairs = rawPayload.split(";")
+
+        for (const pair of keyValPairs) {
+            if (pair.trim()) {
+                let keyVal = pair.split(":")
+                payload[keyVal[0].trim()] = keyVal[1].trim();
+            }
+        }
+
+        data["body"] = JSON.stringify(payload)
     }
+
+    responseOutcome.innerHTML = "<span style='color: orange'>Waiting for response...</span>"
+    responseDisplay.innerText = ""
 
     fetch(
         endpoint.value, data
@@ -86,14 +109,14 @@ export default function Home() {
                             <div className={"text-start mb-3"}>
                                 <label htmlFor={"input-endpoint"}>Endpoint URL <span style={{opacity: "0.5"}}>(change me!)</span></label>
                                 <input type={"url"} id={"input-endpoint"} className={"form-control"}
-                                       placeholder={"e.g. https://httpbin.org/ip"} defaultValue={"https://www.boredapi.com/api/activity"} required/>
+                                       placeholder={"e.g. https://httpbin.org/ip"} defaultValue={randomAPIPicker()} required/>
                             </div>
 
                             {/* Message input */}
                             <div className={"text-start mb-4"} hidden>
-                                <label htmlFor={"input-message"}>Message</label>
-                                <input type={"text"} id={"input-message"} className={"form-control"}
-                                       placeholder={"e.g. Sent from Next.js"}/>
+                                <label htmlFor={"input-body"}>Body</label>
+                                <input type={"text"} id={"input-body"} className={"form-control"}
+                                       placeholder={"e.g. key1: val1; key2: val2;"}/>
                             </div>
 
                             {/* Submit button */}
@@ -105,7 +128,7 @@ export default function Home() {
                         {/* Response */}
                         <div className="col-lg h-100 w-100">
                             <div className={"h-100 w-100 p-5 text-start text-white"} style={{backgroundColor: "black", overflowY: "scroll"}}>
-                                <div id={"response-outcome"}>Use the left panel to send a request</div>
+                                <div id={"response-outcome"}><span style={{color: "grey"}}>Use the left panel to send a HTTP request to the example API, or enter your own API endpoint!</span></div>
                                 <br/>
                                 <div id={"response-display"}></div>
                             </div>
