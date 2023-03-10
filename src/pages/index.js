@@ -57,7 +57,7 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <main className={"text-black"} style={{background: "whitesmoke"}}>
+            <main className={"text-white"} style={{background: "midnightblue"}}>
                 <div className="text-center">
                     <div className="row vh-100 align-items-start">
 
@@ -70,12 +70,12 @@ export default function Home() {
 
                             {/* Method radio buttons */}
                             <div className={"text-start mb-4"}>
-                                <div className="form-check text-primary">
+                                <div className="form-check">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault"
                                            id="flexRadioDefault1" value={"GET"} onClick={changeMethod} checked/>
                                     <label className="form-check-label" htmlFor="flexRadioDefault1">GET</label>
                                 </div>
-                                <div className="form-check text-warning">
+                                <div className="form-check">
                                     <input className="form-check-input" type="radio" name="flexRadioDefault"
                                            id="flexRadioDefault2" value={"POST"} onClick={changeMethod} />
                                     <label className="form-check-label" htmlFor="flexRadioDefault2">POST</label>
@@ -84,9 +84,9 @@ export default function Home() {
 
                             {/* Endpoint input */}
                             <div className={"text-start mb-3"}>
-                                <label htmlFor={"input-endpoint"}>Endpoint</label>
+                                <label htmlFor={"input-endpoint"}>Endpoint URL <span style={{opacity: "0.5"}}>(change me!)</span></label>
                                 <input type={"url"} id={"input-endpoint"} className={"form-control"}
-                                       placeholder={"e.g.https://httpbin.org/ip"} required/>
+                                       placeholder={"e.g. https://httpbin.org/ip"} defaultValue={"https://www.boredapi.com/api/activity"} required/>
                             </div>
 
                             {/* Message input */}
