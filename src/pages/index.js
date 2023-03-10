@@ -98,10 +98,10 @@ export default function Home() {
 
                         {/* Inputs */}
                         <div className={"col-lg-5 text-start p-5 " + roboto.className}>
-                            <h1 className={"fw-bold"} style={{color: "pink"}}>HTTP Tool</h1>
-                            <p className={"fw-light fs-3 mb-3"}>Testing tool for sending HTTP requests from a Next.js server.</p>
+                            <h1 className={"fw-bold text-center text-sm-start"} style={{color: "pink"}}>HTTP Tool</h1>
+                            <p className={"fw-light fs-3 mb-3 text-center text-sm-start"}>Testing tool for sending HTTP requests from a Next.js server.</p>
 
-                            <hr className="border border border-1 opacity-100 mb-4" />
+                            <hr className="border border border-1 opacity-25 mb-4" />
 
                             {/* Method radio buttons */}
                             <div className={"text-start mb-4"}>
@@ -133,14 +133,19 @@ export default function Home() {
 
                             {/* Submit button */}
                             <div className={"text-start mt-4"}>
-                                <button type={"button"} className={"btn btn-lg btn-warning"} onClick={sendRequest}>Send</button>
+                                <button type={"button"} className={"btn btn-lg fw-bold btn-warning border border-3 border-dark border-opacity-25 text-black text-opacity-75"} onClick={sendRequest}>
+                                    Send
+                                    <i className="bi bi-send-fill ms-1"></i>
+                                </button>
                             </div>
 
                             <div className={"fixed-bottom"}>
-                                <span className={"p-2 m-3 bg-light text-black rounded d-inline-block"}>
-                                    <i className="icon bi bi-github me-1"></i>
-                                    Built by Vince Maina
-                                </span>
+                                <a href={"https://github.com/vchapandrews"} target={"_blank"}>
+                                    <span className={"p-2 m-3 bg-light text-black rounded d-inline-block"}>
+                                        <i className="icon bi bi-github me-1"></i>
+                                        Built by Vince Maina
+                                    </span>
+                                </a>
                             </div>
                         </div>
 
@@ -150,7 +155,7 @@ export default function Home() {
                                 overflowY: "scroll", boxShadow: "inset black 0px 0px 30px"}}>
                                 <div id={"response-outcome"}><span style={{color: "grey"}}>Use the left panel to send a HTTP request to the example API, or enter your own API endpoint!</span></div>
                                 <br/>
-                                <div id={"response-display"}></div>
+                                <div id={"response-display"} style={{wordBreak: "break-all"}}></div>
                             </div>
 
                         </div>
