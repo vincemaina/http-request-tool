@@ -92,7 +92,7 @@ export default function Home() {
                 <meta name="viewport" content="width=device-width, initial-scale=1"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
-            <main className={"text-white"} style={{background: "linear-gradient(130deg, midnightblue, violet)"}}>
+            <main className={"text-white"} style={{background: "linear-gradient(190deg, midnightblue, 70%, violet)"}}>
                 <div className="text-center">
                     <div className="row vh-100 align-items-start">
 
